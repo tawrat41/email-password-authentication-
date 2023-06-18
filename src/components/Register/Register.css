@@ -1,0 +1,25 @@
+.register-btn{
+    border: 2px solid rgb(0, 255, 170);
+    border-radius: 15px;
+    background-color: aquamarine;
+    height: 2.5em;
+    width: 7em;
+    font-weight: 600;
+}
+
+.email-field, .pass-field{
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 5px;
+    text-align: center;
+    margin: 5px;
+}
+.email-field:hover, .pass-field:hover{
+    scale: 1.2;
+    transition: ease-in-out .5s;
+}
+
+.register-btn:hover{
+    background-color: rgb(0, 255, 170);
+    transition: .5s;
+}
