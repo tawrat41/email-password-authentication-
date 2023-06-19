@@ -79,6 +79,7 @@ const Register = () => {
         <div>
             <h1>Please Register</h1>
             <form onSubmit={handleSubmit}>
+                <input className='email-field' type="text" name="name" id="name" placeholder='your name' required /><br />
                 <input className='email-field' type="email" name="email" id="email" placeholder='your email' required /><br />
                 <input className='pass-field' type="password" name="password" id="password" placeholder='enter password' required /><br />
                 <p className='alert-msg'>{error}</p>
