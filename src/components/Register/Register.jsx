@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Register.css'
 import { Link } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
 import app from '../../firebase/firebase.config';
 
 
@@ -23,8 +23,9 @@ const Register = () => {
         // get email, pass
         const email = event.target.email.value;
         const password = event.target.password.value;
+        const name = event.target.name.value;
 
-        console.log(email, password);
+        console.log(name, email, password);
 
         // validation
         if (!/(?=.*[A-Z])/.test(password)) {
@@ -52,6 +53,7 @@ const Register = () => {
                 event.target.reset();
                 setSuccess('User has been created succesfully!')
                 verifyEmail(loggedUser)
+                updateUserProfile(loggedUser, name);
                 // ...
             })
             .catch((error) => {
@@ -59,15 +61,30 @@ const Register = () => {
                 setError(error.message)
                 // ..
             });
+
+        
     }
 
     const verifyEmail = (user) => {
-        const auth = getAuth();
         sendEmailVerification(user)
             .then(() => {
                 // Email verification sent!
                 // ...
             });
+    }
+
+    const updateUserProfile = (user, name) => {
+        updateProfile(user, {
+            displayName: name
+        }).then(() => {
+            // Profile updated!
+            // ...
+            console.log('profile updated')
+        }).catch((error) => {
+            // An error occurred
+            setError(error.message)
+            // ...
+        });
     }
 
     // const handleEmailnChange = (event) => {
